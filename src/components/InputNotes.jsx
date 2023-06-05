@@ -19,7 +19,7 @@ class InputNotes extends React.Component {
 
   onTitleChangeHandler(event) {
     this.setState(() => ({
-      title: event.target.value,
+      title: event.target.value.length > 50 ? this.state.title : event.target.value,
       titleLenght: event.target.value.length,
     }));
   }
@@ -46,7 +46,7 @@ class InputNotes extends React.Component {
         <h2>Add notes</h2>
         <CharLimit number={this.state.titleLenght} />
         <form onSubmit={this.onSubmitHandler}>
-          <input className="note-input__title" type="text" placeholder="Notes title ..." value={this.state.title} onChange={this.onTitleChangeHandler} required maxLength={50} />
+          <input className="note-input__title" type="text" placeholder="Notes title ..." value={this.state.title} onChange={this.onTitleChangeHandler} required />
           <textarea className="note-input__body" placeholder="Write your notes here ..." value={this.state.body} onChange={this.onBodyChangeHandler} required maxLength="300" />
           <button type="submit">Create</button>
         </form>
