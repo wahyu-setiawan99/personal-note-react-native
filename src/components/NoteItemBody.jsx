@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function NoteItemBody({ body }) {
   return (
@@ -7,5 +8,9 @@ function NoteItemBody({ body }) {
     </div>
   );
 }
+
+NoteItemBody.propTypes = {
+  body: PropTypes.string.isRequired,
+};
 
 export default NoteItemBody;

@@ -1,14 +1,15 @@
 import React from 'react';
-import { getInitialData, showFormattedDate } from '../utils';
 import NoteAppBody from './NoteAppBody';
 import NoteAppHeader from './NoteAppHeader';
+import getInitialNotes from '../utils/notes';
+import showFormattedDate from '../utils/formatDate';
 
 class NoteApps extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      notes: getInitialData(),
+      notes: getInitialNotes(),
       keyword: '',
 
     };
@@ -18,7 +19,7 @@ class NoteApps extends React.Component {
     this.onArchiveHandlerEvent = this.onArchiveHandlerEvent.bind(this);
     this.onMoveHandlerEvent = this.onMoveHandlerEvent.bind(this);
     this.onSubmitHandlerEvent = this.onSubmitHandlerEvent.bind(this);
-    this.SearchNoteEventHandler = this.SearchNoteEventHandler.bind(this);
+    this.onSearchNoteEventHandler = this.onSearchNoteEventHandler.bind(this);
   }
 
   onDeleteHandlerEvent(id) {
@@ -47,7 +48,7 @@ class NoteApps extends React.Component {
       notes: [
         ...prevState.notes,
         {
-          id: +new Date(),
+          id: `note-${new Date()}`,
           title,
           body,
           archived: false,
@@ -57,7 +58,7 @@ class NoteApps extends React.Component {
     }));
   }
 
-  SearchNoteEventHandler({ keyword }) {
+  onSearchNoteEventHandler({ keyword }) {
     this.setState(() => ({
       keyword,
     }));
@@ -73,8 +74,8 @@ class NoteApps extends React.Component {
           onDelete={this.onDeleteHandlerEvent}
           onArchive={this.onArchiveHandlerEvent}
           onMove={this.onMoveHandlerEvent}
-          submitNotes={this.onSubmitHandlerEvent}
-          onSearch={this.SearchNoteEventHandler}
+          onSubmitNotes={this.onSubmitHandlerEvent}
+          onSearch={this.onSearchNoteEventHandler}
         />
       </div>
     );

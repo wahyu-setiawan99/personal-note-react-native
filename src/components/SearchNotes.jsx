@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchNotes extends React.Component {
   constructor(props) {
@@ -27,5 +28,9 @@ class SearchNotes extends React.Component {
     );
   }
 }
+
+SearchNotes.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default SearchNotes;

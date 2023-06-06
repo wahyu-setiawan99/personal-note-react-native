@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function CharLimit({ number }) {
   return (
@@ -21,5 +22,9 @@ function CharLimit({ number }) {
     </div>
   );
 }
+
+CharLimit.propTypes = {
+  number: PropTypes.number.isRequired,
+};
 
 export default CharLimit;

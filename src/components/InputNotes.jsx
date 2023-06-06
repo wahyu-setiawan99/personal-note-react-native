@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CharLimit from './CharLimit';
 
 class InputNotes extends React.Component {
@@ -32,7 +33,7 @@ class InputNotes extends React.Component {
 
   onSubmitHandler(event) {
     event.preventDefault();
-    this.props.submitNotes(this.state);
+    this.props.onSubmitNotes(this.state);
     this.setState(() => ({
       title: '',
       body: '',
@@ -54,5 +55,9 @@ class InputNotes extends React.Component {
     );
   }
 }
+
+InputNotes.propTypes = {
+  onSubmitNotes: PropTypes.func.isRequired,
+};
 
 export default InputNotes;
