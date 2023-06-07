@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-function NoteItemTitle({ title }) {
+function NoteItemTitle({ id, title }) {
   return (
-    <header className="note-item__title">{title}</header>
+    <Link to={`/note/${id.split('-')[1]}`} className="note-item__title">{title}</Link>
   );
 }
 

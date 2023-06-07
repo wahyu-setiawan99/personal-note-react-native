@@ -1,8 +1,7 @@
 import React from 'react';
 import NoteAppBody from './NoteAppBody';
 import NoteAppHeader from './NoteAppHeader';
-import getInitialNotes from '../utils/notes';
-import showFormattedDate from '../utils/formatDate';
+import { getInitialNotes } from '../utils/notes';
 
 class NoteApps extends React.Component {
   constructor(props) {
@@ -48,11 +47,11 @@ class NoteApps extends React.Component {
       notes: [
         ...prevState.notes,
         {
-          id: `note-${new Date()}`,
+          id: `notes-${+new Date()}`,
           title,
           body,
           archived: false,
-          createdAt: showFormattedDate(new Date()),
+          createdAt: new Date().toDateString(),
         },
       ],
     }));
@@ -67,7 +66,7 @@ class NoteApps extends React.Component {
   render() {
     return (
       <div>
-        <NoteAppHeader sitetitle="MyNotes" />
+        <NoteAppHeader sitetitle="MyNotes" archivePage="Archives" />
         <NoteAppBody
           keyword={this.state.keyword}
           notes={this.state.notes}

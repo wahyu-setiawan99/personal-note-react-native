@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import EmptyList from './EmptyList';
 import NoteItem from './NoteItem';
+import AddNoteButton from './AddNoteButton';
 
 function NoteList({
   notes, onDelete, onArchive, keyword,
@@ -16,8 +17,8 @@ function NoteList({
       <div>
         <h2>Active Notes</h2>
         <EmptyList message="No active notes" />
+        <AddNoteButton />
       </div>
-
     );
   }
 
@@ -36,6 +37,7 @@ function NoteList({
           />
         ))}
       </section>
+      <AddNoteButton />
     </div>
 
   );

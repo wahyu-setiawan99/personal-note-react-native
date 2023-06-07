@@ -1,59 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import CharLimit from './CharLimit';
 
-class InputNotes extends React.Component {
-  constructor(props) {
-    super(props);
+function InputNotes({ onSubmitNotes }) {
+  const [title, setTitle] = React.useState('');
+  const [body, setBody] = React.useState('');
+  const [titleLength, setTitleLength] = React.useState(0);
+  const navigate = useNavigate();
 
-    this.state = {
-      title: '',
-      body: '',
-      titleLenght: 0,
-    };
+  const onTitleChangeHandler = (event) => {
+    const { value } = event.target;
+    setTitleLength(value.length);
+    setTitle(value.length > 50 ? title : value);
+  };
 
-    // binding event handler
-    this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
-    this.onBodyChangeHandler = this.onBodyChangeHandler.bind(this);
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
-  }
+  const onBodyChangeHandler = (event) => {
+    setBody(event.target.value);
+  };
 
-  onTitleChangeHandler(event) {
-    this.setState(() => ({
-      title: event.target.value.length > 50 ? this.state.title : event.target.value,
-      titleLenght: event.target.value.length,
-    }));
-  }
-
-  onBodyChangeHandler(event) {
-    this.setState(() => ({
-      body: event.target.value,
-    }));
-  }
-
-  onSubmitHandler(event) {
+  const onSubmitHandler = (event) => {
     event.preventDefault();
-    this.props.onSubmitNotes(this.state);
-    this.setState(() => ({
-      title: '',
-      body: '',
-      titleLenght: 0,
-    }));
-  }
+    onSubmitNotes({ title, body });
+    navigate('/', { replace: true });
 
-  render() {
-    return (
-      <div className="note-input">
-        <h2>Add notes</h2>
-        <CharLimit number={this.state.titleLenght} />
-        <form onSubmit={this.onSubmitHandler}>
-          <input className="note-input__title" type="text" placeholder="Notes title ..." value={this.state.title} onChange={this.onTitleChangeHandler} required />
-          <textarea className="note-input__body" placeholder="Write your notes here ..." value={this.state.body} onChange={this.onBodyChangeHandler} required maxLength="300" />
-          <button type="submit">Create</button>
-        </form>
-      </div>
-    );
-  }
+    setTitle('');
+    setBody('');
+    setTitleLength(0);
+  };
+
+  return (
+    <div className="note-input">
+      <h2>Add notes</h2>
+      <CharLimit number={titleLength} />
+      <form onSubmit={onSubmitHandler}>
+        <input
+          className="note-input__title"
+          type="text"
+          placeholder="Notes title ..."
+          value={title}
+          onChange={onTitleChangeHandler}
+          required
+        />
+        <textarea
+          className="note-input__body"
+          placeholder="Write your notes here ..."
+          value={body}
+          onChange={onBodyChangeHandler}
+          required
+          maxLength="300"
+        />
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  );
 }
 
 InputNotes.propTypes = {
