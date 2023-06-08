@@ -1,6 +1,8 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import parser from 'html-react-parser';
 import NoteItemAction from './NoteItemAction';
 import showFormattedDate from '../utils/formatDate';
 
@@ -16,7 +18,7 @@ function NoteItemDetail({
     <div className="note-item__detail-page">
       <h3>{title}</h3>
       <p className="note-item__detail-date">{showFormattedDate(createdAt)}</p>
-      <p className="note-item__detail-body">{body}</p>
+      <div className="note-item__detail-body">{parser(body)}</div>
 
       <div className="note-item__action-btn">
         <NoteItemAction
@@ -33,14 +35,10 @@ function NoteItemDetail({
 }
 
 NoteItemDetail.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
 };
-
-// NoteItemDetail.defaultProps = {
-//   onMove: () => {},
-//   onArchive: () => {},
-// };
 
 export default NoteItemDetail;

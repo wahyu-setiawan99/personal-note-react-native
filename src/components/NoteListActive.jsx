@@ -4,18 +4,17 @@ import PropTypes from 'prop-types';
 import EmptyList from './EmptyList';
 import NoteItem from './NoteItem';
 import AddNoteButton from './AddNoteButton';
+import SearchNotes from './SearchNotes';
 
-function NoteList({
-  notes, onDelete, onArchive, keyword,
+function NoteListActive({
+  notes, onDelete, onArchive, onSearch, keyword,
 }) {
-  const filteredNotes = notes.filter((note) => !note.archived
-  && (note.title.toUpperCase().includes(keyword.toUpperCase())
-  || note.body.toUpperCase().includes(keyword.toUpperCase())));
-
-  if (filteredNotes.length === 0) {
+  const activeNotes = notes.filter((note) => !note.archived);
+  if (activeNotes.length === 0) {
     return (
       <div>
         <h2>Active Notes</h2>
+        <SearchNotes onSearch={onSearch} keyword={keyword} />
         <EmptyList message="No active notes" />
         <AddNoteButton />
       </div>
@@ -25,8 +24,9 @@ function NoteList({
   return (
     <div>
       <h2>Active Notes</h2>
+      <SearchNotes onSearch={onSearch} keyword={keyword} />
       <section className="notes-list">
-        {filteredNotes.map((note) => (
+        {activeNotes.map((note) => (
           <NoteItem
             key={note.id}
             id={note.id}
@@ -43,11 +43,11 @@ function NoteList({
   );
 }
 
-NoteList.propTypes = {
+NoteListActive.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default NoteList;
+export default NoteListActive;

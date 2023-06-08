@@ -1,14 +1,15 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import InputNotes from './InputNotes';
-import NoteList from './NoteListActive';
+import NoteListActive from './NoteListActive';
 import NoteListArchived from './NoteListArchived';
 import NoteItemDetail from './NoteItemDetail';
+import NotFoundPage from '../pages/NotFoundPage';
 
 function NoteAppBody({
-  notes, onDelete, onArchive, onMove, onSubmitNotes, keyword,
+  notes, onDelete, onArchive, onMove, onSubmitNotes, onSearch, keyword,
 }) {
   return (
     <div className="note-app__body">
@@ -16,10 +17,11 @@ function NoteAppBody({
         <Route
           path="/"
           element={(
-            <NoteList
+            <NoteListActive
               notes={notes}
               onDelete={onDelete}
               onArchive={onArchive}
+              onSearch={onSearch}
               keyword={keyword}
             />
           )}
@@ -32,6 +34,7 @@ function NoteAppBody({
               notes={notes}
               onDelete={onDelete}
               onMove={onMove}
+              onSearch={onSearch}
               keyword={keyword}
             />
           )}
@@ -55,6 +58,20 @@ function NoteAppBody({
               onArchive={onArchive}
               onMove={onMove}
             />
+          )}
+        />
+
+        <Route
+          path="/404"
+          element={(
+            <NotFoundPage />
+          )}
+        />
+
+        <Route
+          path="*"
+          element={(
+            <Navigate to="/404" />
           )}
         />
 

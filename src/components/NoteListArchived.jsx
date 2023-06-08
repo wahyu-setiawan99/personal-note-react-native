@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 import EmptyList from './EmptyList';
 import NoteItem from './NoteItem';
 import AddNoteButton from './AddNoteButton';
+import SearchNotes from './SearchNotes';
 
 function NoteListArchived({
-  notes, onDelete, onMove, keyword,
+  notes, onDelete, onMove, onSearch, keyword,
 }) {
-  const filteredNotes = notes.filter((note) => note.archived
-  && (note.title.toUpperCase().includes(keyword.toUpperCase())
-  || note.body.toUpperCase().includes(keyword.toUpperCase())));
+  const archivedNotes = notes.filter((note) => note.archived);
 
-  if (filteredNotes.length === 0) {
+  if (archivedNotes.length === 0) {
     return (
       <div>
         <h2>Archived Notes</h2>
+        <SearchNotes onSearch={onSearch} keyword={keyword} />
         <EmptyList message="No archived notes" />
         <AddNoteButton />
       </div>
@@ -25,8 +25,9 @@ function NoteListArchived({
   return (
     <div>
       <h2>Archived Notes</h2>
+      <SearchNotes onSearch={onSearch} keyword={keyword} />
       <section className="notes-list">
-        {filteredNotes.map((note) => (
+        {archivedNotes.map((note) => (
           <NoteItem
             key={note.id}
             id={note.id}

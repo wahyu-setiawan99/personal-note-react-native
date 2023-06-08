@@ -9,6 +9,7 @@ function NoteItemTitle({ id, title }) {
 }
 
 NoteItemTitle.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

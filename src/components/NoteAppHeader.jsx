@@ -13,6 +13,7 @@ function NoteAppHeader({ sitetitle, archivePage }) {
 
 NoteAppHeader.propTypes = {
   sitetitle: PropTypes.string.isRequired,
+  archivePage: PropTypes.string.isRequired,
 };
 
 export default NoteAppHeader;

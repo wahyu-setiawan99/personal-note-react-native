@@ -15,8 +15,8 @@ function InputNotes({ onSubmitNotes }) {
     setTitle(value.length > 50 ? title : value);
   };
 
-  const onBodyChangeHandler = (event) => {
-    setBody(event.target.value);
+  const onBodyInputHandler = (event) => {
+    setBody(event.target.innerHTML);
   };
 
   const onSubmitHandler = (event) => {
@@ -31,7 +31,7 @@ function InputNotes({ onSubmitNotes }) {
 
   return (
     <div className="note-input">
-      <h2>Add notes</h2>
+      <h2>Add active note</h2>
       <CharLimit number={titleLength} />
       <form onSubmit={onSubmitHandler}>
         <input
@@ -42,13 +42,11 @@ function InputNotes({ onSubmitNotes }) {
           onChange={onTitleChangeHandler}
           required
         />
-        <textarea
+        <div
           className="note-input__body"
-          placeholder="Write your notes here ..."
           value={body}
-          onChange={onBodyChangeHandler}
-          required
-          maxLength="300"
+          onInput={onBodyInputHandler}
+          contentEditable
         />
         <button type="submit">Create</button>
       </form>

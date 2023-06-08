@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NoteAppBody from './NoteAppBody';
 import NoteAppHeader from './NoteAppHeader';
 import { getInitialNotes } from '../utils/notes';
@@ -9,7 +10,7 @@ class NoteApps extends React.Component {
 
     this.state = {
       notes: getInitialNotes(),
-      keyword: '',
+      keyword: props.defaultKeyword || '',
 
     };
 
@@ -57,19 +58,24 @@ class NoteApps extends React.Component {
     }));
   }
 
-  onSearchNoteEventHandler({ keyword }) {
+  onSearchNoteEventHandler(keyword) {
     this.setState(() => ({
       keyword,
     }));
+
+    this.props.keywordChange(keyword);
   }
 
   render() {
+    const filteredNotes = this.state.notes.filter(
+      (note) => note.title.toUpperCase().includes(this.state.keyword.toUpperCase()),
+    );
     return (
       <div>
         <NoteAppHeader sitetitle="MyNotes" archivePage="Archives" />
         <NoteAppBody
           keyword={this.state.keyword}
-          notes={this.state.notes}
+          notes={filteredNotes}
           onDelete={this.onDeleteHandlerEvent}
           onArchive={this.onArchiveHandlerEvent}
           onMove={this.onMoveHandlerEvent}
@@ -80,5 +86,14 @@ class NoteApps extends React.Component {
     );
   }
 }
+
+NoteApps.propTypes = {
+  defaultKeyword: PropTypes.string,
+  keywordChange: PropTypes.func.isRequired,
+};
+
+NoteApps.defaultProps = {
+  defaultKeyword: '',
+};
 
 export default NoteApps;

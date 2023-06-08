@@ -36,7 +36,7 @@ input::placeholder, textarea::placeholder {
 .note-app__header .note-app__site-title {
   margin: 8px 0;
   color: white;
-  
+  text-decoration: none;
 }
 
 .note-app__header .note-app__archive-page {
@@ -79,7 +79,7 @@ input::placeholder, textarea::placeholder {
   padding: 0px 24px;
 }
 
-.note-input input, .note-input textarea {
+.note-input input, .note-input .note-input__body {
   display: block;
   width: 100%;
   font-size: 18px;
@@ -98,6 +98,9 @@ input::placeholder, textarea::placeholder {
 
 .note-input__body {
   min-height: 250px;
+  border: 1px white solid;
+  border-radius: 5px;
+  margin-bottom: 18px;
 }
 
 .note-input button {
@@ -237,6 +240,11 @@ input::placeholder, textarea::placeholder {
 
 .note-search input {
   width: 100%;
+  margin-bottom: 24px;
+}
+
+.notes-list {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 
@@ -262,28 +270,7 @@ input::placeholder, textarea::placeholder {
 /* end of liker button */
 
 
-
-
-
-
-
-
-@media only screen and (max-width: 800px) {
-  .note-app__header h1 {
-    text-align: center;
-  }
-}
-
-@media only screen and (min-width: 500px) {
-  .notes-list {
-    grid-template-columns: 1fr 1fr;
-  }
-  .note-search input {
-    width: 100%;
-  }
-}
-
-@media only screen and (min-width: 800px) {
+@media only screen and (max-width: 1100px) {
   .notes-list {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -292,14 +279,99 @@ input::placeholder, textarea::placeholder {
     text-align: center;
   }
 
-  .note-search input {
-    width: 80%;
-  } 
+  
 }
 
-@media only screen and (min-width: 1100px) {
+
+@media only screen and (max-width: 800px) {
   .notes-list {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .note-search input {
+    width: 100%;
   }
 }
+
+
+@media only screen and (max-width: 500px) {
+  .notes-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .note-app__header .note-app__site-title {
+    font-size: 24px;
+  }
+  
+  .note-app__header .note-app__archive-page {
+    font-size: 16px;
+  }
+
+  .note-app__body h2 {
+    font-size: 18px;
+  }
+
+
+ 
+  .note-input input, .note-input .note-input__body {
+    font-size: 14px;
+    padding: 8px;
+  }
+  
+  .note-input__title__char-limit {
+    font-size: 12px;
+  }
+  
+  .note-input button {
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 2px;
+  }
+
+  
+
+  .note-item__detail-page {
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .note-item__detail-page h3 {
+    font-size: 24px;
+  }
+  
+  .note-item__detail-page .note-item__detail-date {
+    font-size: 12px;
+  }
+  
+  .note-item__detail-page .note-item__detail-body {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+
+
+  .note-item__action {
+    gap: 4px;
+    bottom: 8px;
+    right: 8px;
+  }
+  
+  .note-item__delete-button,.note-item__archive-move-button {
+    font-size: 30px;
+  }
+
+
+
+
+  
+  .note-item__add-button {
+    bottom: 8px;
+    right: 8px;
+    font-size: 32px;
+    margin-left: 4px;
+  }
+}
+
+
+
+
 
