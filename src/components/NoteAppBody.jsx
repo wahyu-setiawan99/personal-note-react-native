@@ -88,6 +88,7 @@ NoteAppBody.propTypes = {
   onArchive: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };
 
 export default NoteAppBody;

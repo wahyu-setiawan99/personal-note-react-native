@@ -46,6 +46,7 @@ function NoteListActive({
 NoteListActive.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
