@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import NoteAppsWrapper from './components/NoteAppsWrapper';
+import NoteApps from './components/NoteApps';
 
 // import style
 import './styles/style.css';
@@ -9,6 +9,6 @@ import './styles/style.css';
 const root = createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <NoteAppsWrapper />
+    <NoteApps />
   </BrowserRouter>,
 );

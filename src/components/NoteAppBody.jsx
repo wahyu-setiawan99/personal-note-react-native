@@ -7,6 +7,7 @@ import NoteListActive from './NoteListActive';
 import NoteListArchived from './NoteListArchived';
 import NoteItemDetail from './NoteItemDetail';
 import NotFoundPage from '../pages/NotFoundPage';
+import { noteItemPropTypes } from './NoteItem';
 
 function NoteAppBody({
   notes, onDelete, onArchive, onMove, onSubmitNotes, onSearch, keyword,
@@ -82,7 +83,7 @@ function NoteAppBody({
 }
 
 NoteAppBody.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notes: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
   onSubmitNotes: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,

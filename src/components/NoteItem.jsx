@@ -12,11 +12,13 @@ function NoteItem({
   );
 }
 
-NoteItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
+export const noteItemPropTypes = {
   id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
 };
+
+NoteItem.propTypes = noteItemPropTypes;
 
 export default NoteItem;

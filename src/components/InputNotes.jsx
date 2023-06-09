@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import CharLimit from './CharLimit';
 
 function InputNotes({ onSubmitNotes }) {
-  const [title, setTitle] = React.useState('');
-  const [body, setBody] = React.useState('');
-  const [titleLength, setTitleLength] = React.useState(0);
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [titleLength, setTitleLength] = useState(0);
   const navigate = useNavigate();
 
   const onTitleChangeHandler = (event) => {

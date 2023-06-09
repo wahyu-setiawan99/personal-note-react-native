@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import EmptyList from './EmptyList';
-import NoteItem from './NoteItem';
+import NoteItem, { noteItemPropTypes } from './NoteItem';
 import AddNoteButton from './AddNoteButton';
 import SearchNotes from './SearchNotes';
 
@@ -48,7 +48,7 @@ NoteListActive.propTypes = {
   onArchive: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,
-  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notes: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
 };
 
 export default NoteListActive;

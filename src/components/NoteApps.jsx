@@ -1,99 +1,65 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable no-shadow */
+import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import NoteAppBody from './NoteAppBody';
 import NoteAppHeader from './NoteAppHeader';
 import { getInitialNotes } from '../utils/notes';
 
-class NoteApps extends React.Component {
-  constructor(props) {
-    super(props);
+function NoteApps() {
+  const [notes, setNotes] = useState(getInitialNotes());
+  const [searchParams, setSearchParams] = useSearchParams();
+  const defaultKeyword = searchParams.get('keyword');
+  const [keyword, setKeyword] = useState(defaultKeyword || '');
 
-    this.state = {
-      notes: getInitialNotes(),
-      keyword: props.defaultKeyword || '',
+  const onDeleteHandlerEvent = (id) => {
+    const updatedNotes = notes.filter((note) => note.id !== id);
+    setNotes(updatedNotes);
+  };
 
+  const onArchiveHandlerEvent = (id) => {
+    const updatedNotes = notes.map((note) => (note.id === id ? { ...note, archived: true } : note));
+    setNotes(updatedNotes);
+  };
+
+  const onMoveHandlerEvent = (id) => {
+    const updatedNotes = notes
+      .map((note) => (note.id === id ? { ...note, archived: false } : note));
+    setNotes(updatedNotes);
+  };
+
+  const onSubmitHandlerEvent = ({ title, body }) => {
+    const newNote = {
+      id: `notes-${+new Date()}`,
+      title,
+      body,
+      archived: false,
+      createdAt: new Date().toDateString(),
     };
+    setNotes((prevNotes) => [...prevNotes, newNote]);
+  };
 
-    // bindingHandler
-    this.onDeleteHandlerEvent = this.onDeleteHandlerEvent.bind(this);
-    this.onArchiveHandlerEvent = this.onArchiveHandlerEvent.bind(this);
-    this.onMoveHandlerEvent = this.onMoveHandlerEvent.bind(this);
-    this.onSubmitHandlerEvent = this.onSubmitHandlerEvent.bind(this);
-    this.onSearchNoteEventHandler = this.onSearchNoteEventHandler.bind(this);
-  }
+  const onSearchNoteEventHandler = (keyword) => {
+    setKeyword(keyword);
+    setSearchParams({ keyword });
+  };
 
-  onDeleteHandlerEvent(id) {
-    const notes = this.state.notes.filter((note) => note.id !== id);
-    this.setState({ notes });
-  }
+  const filteredNotes = notes
+    .filter((note) => note.title.toUpperCase().includes(keyword.toUpperCase()));
 
-  onArchiveHandlerEvent(id) {
-    this.setState((prevState) => ({
-      notes: prevState.notes.map(
-        (note) => (note.id === id ? { ...note, archived: true } : note),
-      ),
-    }));
-  }
-
-  onMoveHandlerEvent(id) {
-    this.setState((prevState) => ({
-      notes: prevState.notes.map(
-        (note) => (note.id === id ? { ...note, archived: false } : note),
-      ),
-    }));
-  }
-
-  onSubmitHandlerEvent({ title, body }) {
-    this.setState((prevState) => ({
-      notes: [
-        ...prevState.notes,
-        {
-          id: `notes-${+new Date()}`,
-          title,
-          body,
-          archived: false,
-          createdAt: new Date().toDateString(),
-        },
-      ],
-    }));
-  }
-
-  onSearchNoteEventHandler(keyword) {
-    this.setState(() => ({
-      keyword,
-    }));
-
-    this.props.keywordChange(keyword);
-  }
-
-  render() {
-    const filteredNotes = this.state.notes.filter(
-      (note) => note.title.toUpperCase().includes(this.state.keyword.toUpperCase()),
-    );
-    return (
-      <div>
-        <NoteAppHeader sitetitle="MyNotes" archivePage="Archives" />
-        <NoteAppBody
-          keyword={this.state.keyword}
-          notes={filteredNotes}
-          onDelete={this.onDeleteHandlerEvent}
-          onArchive={this.onArchiveHandlerEvent}
-          onMove={this.onMoveHandlerEvent}
-          onSubmitNotes={this.onSubmitHandlerEvent}
-          onSearch={this.onSearchNoteEventHandler}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <NoteAppHeader sitetitle="MyNotes" archivePage="Archives" />
+      <NoteAppBody
+        keyword={keyword}
+        notes={filteredNotes}
+        onDelete={onDeleteHandlerEvent}
+        onArchive={onArchiveHandlerEvent}
+        onMove={onMoveHandlerEvent}
+        onSubmitNotes={onSubmitHandlerEvent}
+        onSearch={onSearchNoteEventHandler}
+      />
+    </div>
+  );
 }
-
-NoteApps.propTypes = {
-  defaultKeyword: PropTypes.string,
-  keywordChange: PropTypes.func.isRequired,
-};
-
-NoteApps.defaultProps = {
-  defaultKeyword: '',
-};
 
 export default NoteApps;
