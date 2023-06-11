@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NoteItemContent from './NoteItemContent';
 
 function NoteItem({
-  title, createdAt, body, id,
+  id, title, createdAt, body,
 }) {
   return (
     <article className="note-item">

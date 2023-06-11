@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner';
 import { getNote } from '../utils/network-data';
 import NoteItemDetail from '../components/NoteItemDetail';
 
@@ -28,7 +29,23 @@ function DetailNotePage({
   }, [id]);
 
   if (isLoading) {
-    return <div className="loading__detail-page">Loading ...</div>;
+    return (
+      <div className="loading-indicator__display">
+        <Oval
+          ariaLabel="loading-indicator"
+          height={40}
+          width={40}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible
+          secondaryColor="#4fa94d"
+          strokeWidth={4}
+          strokeWidthSecondary={4}
+        />
+        <p>Loading</p>
+      </div>
+    );
   }
 
   return (

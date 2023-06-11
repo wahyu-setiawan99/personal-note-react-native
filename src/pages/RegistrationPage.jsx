@@ -27,7 +27,11 @@ function RegistrationPage() {
       <RegistrationForm registerUser={onRegisterUserEventHandler} />
 
       <div className="to__login-page">
-        <p><Link to="/login">Already have account? Login here!</Link></p>
+        <p>
+          Already have account?
+          {' '}
+          <Link to="/login">Login here!</Link>
+        </p>
       </div>
     </div>
 

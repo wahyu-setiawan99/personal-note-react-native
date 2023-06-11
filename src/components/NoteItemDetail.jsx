@@ -31,10 +31,19 @@ function NoteItemDetail({
   );
 }
 
+export const detailNotePropTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  archived: PropTypes.bool.isRequired,
+};
+
 NoteItemDetail.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
+  detailNote: PropTypes.shape(detailNotePropTypes).isRequired,
 };
 
 export default NoteItemDetail;

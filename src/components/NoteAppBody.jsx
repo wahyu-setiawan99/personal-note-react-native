@@ -152,11 +152,19 @@ function NoteAppBody({
 
 NoteAppBody.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
+  archives: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
-  keyword: PropTypes.string.isRequired,
   onSearch: PropTypes.func.isRequired,
+  loginSuccess: PropTypes.func.isRequired,
+  onAddNote: PropTypes.func.isRequired,
+  keyword: PropTypes.string.isRequired,
+  authedUser: PropTypes.objectOf(PropTypes.string),
+};
+
+NoteAppBody.defaultProps = {
+  authedUser: { key: 'value' },
 };
 
 export default NoteAppBody;

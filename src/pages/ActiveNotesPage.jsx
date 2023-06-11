@@ -43,11 +43,11 @@ function ActiveNotesPage({
 }
 
 ActiveNotesPage.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,
-  notes: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
 };
 
 export default ActiveNotesPage;

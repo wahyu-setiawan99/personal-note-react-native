@@ -27,7 +27,11 @@ function LoginPage({ loginSuccess }) {
       <LoginForm loginUser={onLoginUserEventHandler} />
 
       <div className="to__register-page">
-        <p><Link to="/register">No account? Sign up here!</Link></p>
+        <p>
+          No account yet?
+          {' '}
+          <Link to="/register">Sign up here!</Link>
+        </p>
       </div>
 
     </div>

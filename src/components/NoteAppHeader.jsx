@@ -31,6 +31,7 @@ function NoteAppHeader({
 NoteAppHeader.propTypes = {
   sitetitle: PropTypes.string.isRequired,
   archivePage: PropTypes.string.isRequired,
+  onLogout: PropTypes.func.isRequired,
   authedUser: PropTypes.objectOf(PropTypes.string),
 };
 

@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner';
 import NoteAppBody from './components/NoteAppBody';
 import NoteAppHeader from './components/NoteAppHeader';
 import {
@@ -18,6 +19,7 @@ function NoteApps() {
   const [keyword, setKeyword] = useState(() => searchParams.get('keyword') || '');
   const [authedUser, setAuthedUser] = useState(null);
   const [initializing, setInitializing] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [trigger, setTrigger] = useState([]);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
@@ -59,6 +61,7 @@ function NoteApps() {
         setNotes([]);
         setArchives([]);
       }
+      setIsLoading(false);
     }
 
     getInitialNotes();
@@ -72,6 +75,7 @@ function NoteApps() {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
     setAuthedUser(data);
+    setIsLoading(true);
     setTrigger([]);
   };
 
@@ -117,6 +121,27 @@ function NoteApps() {
 
   if (initializing) {
     return null;
+  }
+
+  if (isLoading) {
+    return (
+      <div className="loading-indicator__display">
+        <Oval
+          ariaLabel="loading-indicator"
+          height={40}
+          width={40}
+          color="#4fa94d"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible
+          secondaryColor="#4fa94d"
+          strokeWidth={4}
+          strokeWidthSecondary={4}
+        />
+        <p>Loading</p>
+      </div>
+
+    );
   }
 
   return (

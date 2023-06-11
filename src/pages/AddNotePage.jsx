@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AddNoteForm from '../components/AddNoteForm';
 
 function AddNotePage({ onAddNote }) {
@@ -9,5 +10,9 @@ function AddNotePage({ onAddNote }) {
     </div>
   );
 }
+
+AddNotePage.propTypes = {
+  onAddNote: PropTypes.func.isRequired,
+};
 
 export default AddNotePage;

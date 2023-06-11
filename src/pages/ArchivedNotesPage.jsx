@@ -42,11 +42,11 @@ function ArchivedNotesPage({
 }
 
 ArchivedNotesPage.propTypes = {
+  archives: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDelete: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,
-  archives: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ArchivedNotesPage;

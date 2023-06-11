@@ -121,6 +121,11 @@ input::placeholder, textarea::placeholder {
   flex-direction: column;
 }
 
+.input__registration input, 
+.input__login input {
+  border: 1px solid var(--line-color);
+} 
+
 .submit__registration,
 .submit__login {
   display: block;
@@ -201,6 +206,14 @@ input::placeholder, textarea::placeholder {
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.loading-indicator__display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
 }
 
 /* Start adding new notes */
