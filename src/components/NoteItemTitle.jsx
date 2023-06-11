@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function NoteItemTitle({ id, title }) {
   return (
-    <Link to={`/note/${id.split('-')[1]}`} className="note-item__title">{title}</Link>
+    <Link to={`/note/${id}`} className="note-item__title">{title}</Link>
   );
 }
 

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function MoveButton({ onMove, id }) {
   return (
     <button title="activate" type="button" className="note-item__archive-move-button" onClick={() => onMove(id)}>
-      <Link to="/">
+      <Link to="/archives">
         <FontAwesomeIcon className="action-icon" icon={faArrowsSpin} />
       </Link>
     </button>

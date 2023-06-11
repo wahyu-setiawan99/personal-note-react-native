@@ -1,16 +1,15 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import EmptyList from './EmptyList';
-import NoteItem, { noteItemPropTypes } from './NoteItem';
-import AddNoteButton from './AddNoteButton';
-import SearchNotes from './SearchNotes';
+import EmptyList from '../components/EmptyList';
+import NoteItem, { noteItemPropTypes } from '../components/NoteItem';
+import AddNoteButton from '../components/AddNoteButton';
+import SearchNotes from '../components/SearchNotes';
 
-function NoteListActive({
+function ActiveNotesPage({
   notes, onDelete, onArchive, onSearch, keyword,
 }) {
-  const activeNotes = notes.filter((note) => !note.archived);
-  if (activeNotes.length === 0) {
+  if (notes.length === 0) {
     return (
       <div>
         <h2>Active Notes</h2>
@@ -26,7 +25,7 @@ function NoteListActive({
       <h2>Active Notes</h2>
       <SearchNotes onSearch={onSearch} keyword={keyword} />
       <section className="notes-list">
-        {activeNotes.map((note) => (
+        {notes.map((note) => (
           <NoteItem
             key={note.id}
             id={note.id}
@@ -43,7 +42,7 @@ function NoteListActive({
   );
 }
 
-NoteListActive.propTypes = {
+ActiveNotesPage.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onArchive: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
@@ -51,4 +50,4 @@ NoteListActive.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
 };
 
-export default NoteListActive;
+export default ActiveNotesPage;

@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import CharLimit from './CharLimit';
 
-function InputNotes({ onSubmitNotes }) {
+function AddNoteForm({ onAddNote }) {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [titleLength, setTitleLength] = useState(0);
-  const navigate = useNavigate();
 
   const onTitleChangeHandler = (event) => {
     const { value } = event.target;
@@ -21,18 +19,13 @@ function InputNotes({ onSubmitNotes }) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    onSubmitNotes({ title, body });
-    navigate('/', { replace: true });
-
-    setTitle('');
-    setBody('');
-    setTitleLength(0);
+    onAddNote({ title, body });
   };
 
   return (
-    <div className="note-input">
-      <h2>Add active note</h2>
+    <div className="add-note__form">
       <CharLimit number={titleLength} />
+
       <form onSubmit={onSubmitHandler}>
         <input
           className="note-input__title"
@@ -51,11 +44,12 @@ function InputNotes({ onSubmitNotes }) {
         <button type="submit">Create</button>
       </form>
     </div>
+
   );
 }
 
-InputNotes.propTypes = {
-  onSubmitNotes: PropTypes.func.isRequired,
+AddNoteForm.propTypes = {
+  onAddNote: PropTypes.func.isRequired,
 };
 
-export default InputNotes;
+export default AddNoteForm;

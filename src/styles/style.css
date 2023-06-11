@@ -1,7 +1,18 @@
+:root {
+  --font-color: #eee;
+  --background-color: #333;
+}
+ 
+[data-theme='light'] {
+  --font-color: #333;
+  --background-color: #eee;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  transition: background 0.3s ease-in;
 }
 
 body {
@@ -25,6 +36,9 @@ input::placeholder, textarea::placeholder {
   font-weight: bold;
 }
 
+
+/* start of navigation and header*/
+
 .note-app__header {
   display: flex;
   align-items: center;
@@ -34,19 +48,39 @@ input::placeholder, textarea::placeholder {
 }
 
 .note-app__header .note-app__site-title {
-  margin: 8px 0;
   color: white;
   text-decoration: none;
+  display: block;
+}
+
+.left-btn__navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .note-app__header .note-app__archive-page {
-  margin: 8px 0;
+  margin: 8px 24px;
   color: white;
 }
 
 .note-app__header .note-app__archive-page:hover {
   color: rgb(142, 142, 142);
 }
+
+.logout-user__navigation-button {
+  cursor: pointer;
+  padding: 8px;
+}
+
+
+/* end of navigation and header */
+
+
+
+
+
 
 
 .note-app__body {
@@ -66,6 +100,56 @@ input::placeholder, textarea::placeholder {
 
 
 
+/* Start register and login user */
+.regisration-user__page, .login-user__page {
+  margin-top: 36px;
+}
+
+
+.regisration-user__form, .login-user__form {
+  display: flex;
+  gap: 18px;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.input__registration, .input__login {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit__registration, .submit__login {
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  padding: 12px;
+  margin-top: 24px;
+  background-color: transparent;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  border: 1px solid orangered;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: orangered;
+}
+
+.submit__registration:hover, .submit__login:hover {
+  background-color: red;
+}
+
+
+.error-message__registration {
+  color: red;
+  font-size: 12px;
+}
+
+.to__login-page, .to__register-page {
+  width: 50%;
+  margin: 20px auto;
+}
+/* End register user */
 
 
 
@@ -290,10 +374,26 @@ input::placeholder, textarea::placeholder {
   .note-search input {
     width: 100%;
   }
+
+  .regisration-user__form, .login-user__form {
+    width: 90%;
+  }
+
+  .to__login-page, .to__register-page {
+    width: 90%;
+  }
 }
 
 
 @media only screen and (max-width: 500px) {
+  .note-app__header {
+    padding: 10px;
+  }
+
+  .note-app__header .note-app__archive-page {
+    margin: 8px 16px;
+  }
+
   .notes-list {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -308,6 +408,10 @@ input::placeholder, textarea::placeholder {
 
   .note-app__body h2 {
     font-size: 18px;
+  }
+
+  .logout-user__navigation-button {
+    padding: 4px;
   }
 
 
@@ -368,6 +472,15 @@ input::placeholder, textarea::placeholder {
     right: 8px;
     font-size: 32px;
     margin-left: 4px;
+  }
+
+
+
+
+  .submit__registration, .submit__login {
+    font-size: 16px;
+    padding: 8px;
+    font-weight: 550;
   }
 }
 

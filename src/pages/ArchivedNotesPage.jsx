@@ -1,17 +1,15 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import EmptyList from './EmptyList';
-import NoteItem from './NoteItem';
-import AddNoteButton from './AddNoteButton';
-import SearchNotes from './SearchNotes';
+import EmptyList from '../components/EmptyList';
+import NoteItem from '../components/NoteItem';
+import AddNoteButton from '../components/AddNoteButton';
+import SearchNotes from '../components/SearchNotes';
 
-function NoteListArchived({
-  notes, onDelete, onMove, onSearch, keyword,
+function ArchivedNotesPage({
+  archives, onDelete, onMove, onSearch, keyword,
 }) {
-  const archivedNotes = notes.filter((note) => note.archived);
-
-  if (archivedNotes.length === 0) {
+  if (archives.length === 0) {
     return (
       <div>
         <h2>Archived Notes</h2>
@@ -27,7 +25,7 @@ function NoteListArchived({
       <h2>Archived Notes</h2>
       <SearchNotes onSearch={onSearch} keyword={keyword} />
       <section className="notes-list">
-        {archivedNotes.map((note) => (
+        {archives.map((note) => (
           <NoteItem
             key={note.id}
             id={note.id}
@@ -43,12 +41,12 @@ function NoteListArchived({
   );
 }
 
-NoteListArchived.propTypes = {
+ArchivedNotesPage.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   keyword: PropTypes.string.isRequired,
-  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  archives: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default NoteListArchived;
+export default ArchivedNotesPage;
