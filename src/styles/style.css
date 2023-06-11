@@ -1,11 +1,13 @@
 :root {
   --font-color: #eee;
-  --background-color: #333;
+  --background-color: #202124;
+  --line-color: #747474;
 }
- 
+
 [data-theme='light'] {
   --font-color: #333;
   --background-color: #eee;
+  --line-color: #000000;
 }
 
 * {
@@ -17,8 +19,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #202124;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
 input, textarea {
@@ -26,7 +28,7 @@ input, textarea {
   margin: 12px 0;
   font-family: 'Inter', sans-serif;
   background-color: transparent;
-  color: white;
+  color: var(--font-color);
   border: 1px solid #aaa;
   border-radius: 4px;
 }
@@ -36,7 +38,6 @@ input::placeholder, textarea::placeholder {
   font-weight: bold;
 }
 
-
 /* start of navigation and header*/
 
 .note-app__header {
@@ -44,13 +45,19 @@ input::placeholder, textarea::placeholder {
   align-items: center;
   justify-content: space-between;
   padding: 20px 30px;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid var(--line-color);
 }
 
 .note-app__header .note-app__site-title {
-  color: white;
+  color: var(--font-color);
   text-decoration: none;
   display: block;
+}
+
+.left-buttons__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .left-btn__navigation {
@@ -62,26 +69,23 @@ input::placeholder, textarea::placeholder {
 
 .note-app__header .note-app__archive-page {
   margin: 8px 24px;
-  color: white;
+  color: var(--font-color);
 }
 
 .note-app__header .note-app__archive-page:hover {
   color: rgb(142, 142, 142);
 }
 
-.logout-user__navigation-button {
+.logout-user__navigation-button, .toggle-theme__btn-wrapper {
   cursor: pointer;
-  padding: 8px;
+  padding: 4px;
+  font-size: 18px;
+  border-radius: 6px;
+  margin: 4px;
+  width: 32px;
 }
 
-
 /* end of navigation and header */
-
-
-
-
-
-
 
 .note-app__body {
   max-width: 1000px;
@@ -96,17 +100,14 @@ input::placeholder, textarea::placeholder {
   text-align: center;
 }
 
-
-
-
-
 /* Start register and login user */
-.regisration-user__page, .login-user__page {
+.regisration-user__page,
+.login-user__page {
   margin-top: 36px;
 }
 
-
-.regisration-user__form, .login-user__form {
+.regisration-user__form,
+.login-user__form {
   display: flex;
   gap: 18px;
   flex-direction: column;
@@ -114,12 +115,14 @@ input::placeholder, textarea::placeholder {
   margin: 0 auto;
 }
 
-.input__registration, .input__login {
+.input__registration,
+.input__login {
   display: flex;
   flex-direction: column;
 }
 
-.submit__registration, .submit__login {
+.submit__registration,
+.submit__login {
   display: block;
   width: 100%;
   font-size: 18px;
@@ -127,7 +130,7 @@ input::placeholder, textarea::placeholder {
   margin-top: 24px;
   background-color: transparent;
   font-family: 'Inter', sans-serif;
-  color: white;
+  color: var(--font-color);
   border: 1px solid orangered;
   border-radius: 4px;
   font-weight: 600;
@@ -135,39 +138,39 @@ input::placeholder, textarea::placeholder {
   background-color: orangered;
 }
 
-.submit__registration:hover, .submit__login:hover {
+.submit__registration:hover,
+.submit__login:hover {
   background-color: red;
 }
-
 
 .error-message__registration {
   color: red;
   font-size: 12px;
 }
 
-.to__login-page, .to__register-page {
+.to__login-page,
+.to__register-page {
   width: 50%;
   margin: 20px auto;
 }
+
 /* End register user */
-
-
-
 
 /* Start adding new notes */
 
-.note-input {
+.add-note__form {
   margin: 0 auto;
   max-width: 1000px;
   margin-bottom: 48px;
   padding: 0px 24px;
 }
 
-.note-input input, .note-input .note-input__body {
+.note-input__title, .note-input__body {
   display: block;
   width: 100%;
   font-size: 18px;
   padding: 12px;
+  border: 2px solid var(--line-color);
 }
 
 .note-input__title {
@@ -177,37 +180,30 @@ input::placeholder, textarea::placeholder {
 .note-input__title__char-limit {
   font-size: 14px;
   text-align: right;
-  color: #aaa;
+  color: var(--font-color);
 }
 
 .note-input__body {
   min-height: 250px;
-  border: 1px white solid;
   border-radius: 5px;
   margin-bottom: 18px;
 }
 
-.note-input button {
+.add-note__form button {
   display: block;
   width: 100%;
   font-size: 18px;
   padding: 12px;
   background-color: transparent;
   font-family: 'Inter', sans-serif;
-  color: white;
-  border: 1px solid #aaa;
+  color: var(--font-color);
+  border: 2px solid var(--line-color);
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
 }
 
 /* Start adding new notes */
-
-
-
-
-
-
 
 .notes-list {
   display: grid;
@@ -219,12 +215,13 @@ input::placeholder, textarea::placeholder {
 
 .notes-list__empty-message {
   text-align: center;
-  color: #aaa;
+  color: var(--font-color);
   margin-top: 30px;
+  font-weight: 500;
 }
 
 .note-item {
-  border: 1px solid #aaa;
+  border: 1px solid var(--line-color);
   border-radius: 5px;
   overflow: hidden;
   display: flex;
@@ -240,7 +237,7 @@ input::placeholder, textarea::placeholder {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  color: white;
+  color: var(--font-color);
   font-weight: 600;
 }
 
@@ -248,13 +245,12 @@ input::placeholder, textarea::placeholder {
   font-size: 12px;
   margin-top: 6px;
   margin-bottom: 8px;
-  color: #aaa;
+  color: var(--font-color);
 }
 
 .note-item__body {
   font-size: 14px;
 }
-
 
 /* start of detail page */
 .note-item__detail-page {
@@ -279,11 +275,7 @@ input::placeholder, textarea::placeholder {
 
 /* end of detail page */
 
-
-
-
 /* start of action button */
-
 .note-item__action {
   display: flex;
   flex-direction: row;
@@ -293,7 +285,8 @@ input::placeholder, textarea::placeholder {
   right: 18px;
 }
 
-.note-item__delete-button,.note-item__archive-move-button {
+.note-item__delete-button,
+.note-item__archive-move-button {
   font-size: 36px;
   background-color: transparent;
   cursor: pointer;
@@ -301,13 +294,12 @@ input::placeholder, textarea::placeholder {
   border: 2px transparent;
 }
 
-.note-item__delete-button .action-icon  {
-  color: #ff5f52;
-  
+.note-item__delete-button .action-icon {
+  color: var(--font-color);
 }
 
 .note-item__archive-move-button .action-icon {
-  color: #fff263;
+  color: var(--font-color);
 }
 
 .note-item__archive-move-button .action-icon:hover {
@@ -320,22 +312,17 @@ input::placeholder, textarea::placeholder {
 
 /* end of action button */
 
-
-
 .note-search input {
   width: 100%;
   margin-bottom: 24px;
+  border: 2px solid var(--line-color);
 }
 
 .notes-list {
   grid-template-columns: repeat(4, 1fr);
 }
 
-
-
-
 /* start of addNotes button */
-
 .note-item__add-button {
   position: fixed;
   bottom: 18px;
@@ -348,11 +335,10 @@ input::placeholder, textarea::placeholder {
 }
 
 .note-item__add-button .add-note__icon {
-  color: white;
+  color: var(--font-color);
 }
 
 /* end of liker button */
-
 
 @media only screen and (max-width: 1100px) {
   .notes-list {
@@ -362,10 +348,7 @@ input::placeholder, textarea::placeholder {
   .note-search {
     text-align: center;
   }
-
-  
 }
-
 
 @media only screen and (max-width: 800px) {
   .notes-list {
@@ -375,15 +358,16 @@ input::placeholder, textarea::placeholder {
     width: 100%;
   }
 
-  .regisration-user__form, .login-user__form {
+  .regisration-user__form,
+  .login-user__form {
     width: 90%;
   }
 
-  .to__login-page, .to__register-page {
+  .to__login-page,
+  .to__register-page {
     width: 90%;
   }
 }
-
 
 @media only screen and (max-width: 500px) {
   .note-app__header {
@@ -401,7 +385,7 @@ input::placeholder, textarea::placeholder {
   .note-app__header .note-app__site-title {
     font-size: 24px;
   }
-  
+
   .note-app__header .note-app__archive-page {
     font-size: 16px;
   }
@@ -410,63 +394,63 @@ input::placeholder, textarea::placeholder {
     font-size: 18px;
   }
 
-  .logout-user__navigation-button {
-    padding: 4px;
+  .note-app__header .note-app__archive-page {
+    margin: 8px 10px;
   }
 
+  .logout-user__navigation-button, .toggle-theme__btn-wrapper {
+    padding: 2px;
+    font-size: 14px;
+    margin: 2px;
+    width: 22px;
+  }
 
- 
-  .note-input input, .note-input .note-input__body {
+  .note-input input,
+  .note-input .note-input__body {
     font-size: 14px;
     padding: 8px;
+    border: 1px solid var(--line-color);
   }
-  
+
   .note-input__title__char-limit {
     font-size: 12px;
   }
-  
+
   .note-input button {
     font-size: 12px;
     padding: 8px;
     border-radius: 2px;
   }
 
-  
-
   .note-item__detail-page {
     padding: 12px;
     gap: 8px;
   }
-  
+
   .note-item__detail-page h3 {
     font-size: 24px;
   }
-  
+
   .note-item__detail-page .note-item__detail-date {
     font-size: 12px;
   }
-  
+
   .note-item__detail-page .note-item__detail-body {
     font-size: 16px;
     margin-top: 8px;
   }
-
-
 
   .note-item__action {
     gap: 4px;
     bottom: 8px;
     right: 8px;
   }
-  
-  .note-item__delete-button,.note-item__archive-move-button {
+
+  .note-item__delete-button,
+  .note-item__archive-move-button {
     font-size: 30px;
   }
 
-
-
-
-  
   .note-item__add-button {
     bottom: 8px;
     right: 8px;
@@ -474,17 +458,10 @@ input::placeholder, textarea::placeholder {
     margin-left: 4px;
   }
 
-
-
-
-  .submit__registration, .submit__login {
+  .submit__registration,
+  .submit__login {
     font-size: 16px;
     padding: 8px;
     font-weight: 550;
   }
 }
-
-
-
-
-

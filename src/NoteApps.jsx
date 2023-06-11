@@ -19,12 +19,18 @@ function NoteApps() {
   const [authedUser, setAuthedUser] = useState(null);
   const [initializing, setInitializing] = useState(true);
   const [trigger, setTrigger] = useState([]);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   const navigate = useNavigate();
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'dark' ? 'light' : 'dark';
+
+      localStorage.setItem('theme', newTheme);
+
+      return newTheme;
+    });
   };
 
   const themeContextValue = useMemo(() => ({
@@ -57,6 +63,10 @@ function NoteApps() {
 
     getInitialNotes();
   }, [trigger]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   const onLoginSuccessHandlerEvent = async ({ accessToken }) => {
     putAccessToken(accessToken);
